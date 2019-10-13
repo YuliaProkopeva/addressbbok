@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook.manager;
+package ru.manager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,7 +21,10 @@ public class BaseHelper {
         driver.findElement(locator).sendKeys(text);
     }
 
-    protected void newObject(String text, By locator) {
+    protected void selectFromListOfValue(String text, By locator) {
         new Select(driver.findElement(locator)).selectByVisibleText(text);
+    }
+    protected void accept() {
+        driver.switchTo().alert().accept();
     }
 }

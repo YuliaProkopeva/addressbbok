@@ -1,20 +1,22 @@
-package ru.stqa.pft.addressbook.test;
+package ru.test;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import ru.stqa.pft.addressbook.manager.ApplicationManager;
+import ru.manager.ApplicationManager;
 
 public class TestBase {
 
 
     protected final ApplicationManager app = new ApplicationManager();
+    protected WebDriver driver;
 
     @BeforeClass
     public void setUp() {
         app.init();
     }
 
-    @AfterClass
+       @AfterClass
     public void tearDown(){
         app.stop();
     }

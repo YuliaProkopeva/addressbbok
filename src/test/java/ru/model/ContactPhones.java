@@ -1,11 +1,11 @@
-package ru.stqa.pft.addressbook.model;
+package ru.model;
 
-public class ContactPhoneData {
+public class ContactPhones {
     private final String work;
     private final String mobile;
     private final String home;
 
-    public ContactPhoneData(String work, String mobile, String home) {
+    public ContactPhones(String work, String mobile, String home) {
         this.work = work;
         this.mobile = mobile;
         this.home = home;
