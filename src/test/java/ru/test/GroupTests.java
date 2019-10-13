@@ -3,11 +3,11 @@ package ru.test;
 import org.testng.annotations.Test;
 import ru.model.GroupData;
 
-public class GroupCreationTests extends TestBase {
+public class GroupTests extends TestBase {
 
 
   @Test
-  public void testGroupCreation()  {
+  public void testGroup()  {
     app.getNavigationHelper().gotoGroupPage();
     app.getGroupHelper().initGroupCreation();
     app.getGroupHelper().fillGroupForm(new GroupData("test1", "test2", "test3"));

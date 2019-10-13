@@ -3,10 +3,10 @@ package ru.test;
 import org.testng.annotations.Test;
 import ru.model.*;
 
-public class AddContactTests extends TestBase {
+public class ContactTests extends TestBase {
 
   @Test
-  public void addContact()  {
+  public void testContact()  {
     ContactData contactData = new ContactData("test@test.test", "testtest", "test4", "test3", "test8");
     app.getNavigationHelper().gotoAddContact();
     app.getContactHelper().fillEmail(contactData);
@@ -19,15 +19,7 @@ public class AddContactTests extends TestBase {
     app.getContactHelper().fillBirthday();
     app.getContactHelper().addGroup();
     app.getContactHelper().submitAddContact();
-    app.getContactHelper().returnToHome();
-    app.getChangesHelper().clickEditContact();
-    app.getContactHelper().fillContactName(new ContactUser("test3", "test7", "test8"));
-    app.getChangesHelper().pressUpdateButton();
-    app.getChangesHelper().clickModifyContact();
-    app.getContactHelper().fillPhone(new ContactPhones("test12", "test1", "test4"));
-    app.getChangesHelper().pressUpdateButton();
     app.getContactHelper().downloadCard();
     app.getContactHelper().deleteContact();
   }
-
 }

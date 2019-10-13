@@ -10,7 +10,7 @@ public class ContactHelper extends BaseHelper {
         super(driver);
     }
 
-    public void returnToHome() {
+    public void goToHomePage() {
         click(By.linkText("home"));
     }
 
