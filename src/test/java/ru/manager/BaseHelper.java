@@ -1,6 +1,7 @@
 package ru.manager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -26,5 +27,14 @@ public class BaseHelper {
     }
     protected void accept() {
         driver.switchTo().alert().accept();
+    }
+    
+     private boolean isAlertPresent() {
+        try {
+            driver.switchTo().alert();
+            return true;
+        } catch (NoAlertPresentException e) {
+            return false;
+        }
     }
 }
