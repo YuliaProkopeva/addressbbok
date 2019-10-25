@@ -9,11 +9,6 @@ public class ContactHelper extends BaseHelper {
     public ContactHelper(WebDriver driver) {
         super(driver);
     }
-
-    public void goToHomePage() {
-        click(By.linkText("home"));
-    }
-
     public void submitAddContact() {
         click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]"));
     }
