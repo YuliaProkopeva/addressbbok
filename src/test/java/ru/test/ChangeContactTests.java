@@ -7,7 +7,7 @@ public class ChangeContactTests extends TestBase {
 
     @Test
     public void changeContact()  {
-        app.getContactHelper().goToHomePage();
+        app.getNavigationHelper().goToHomePage();
         app.getChangesHelper().clickEditContact();
         app.getContactHelper().fillContactName(new ContactUser("test3", "test7", "test8"));
         app.getChangesHelper().pressUpdateButton();
