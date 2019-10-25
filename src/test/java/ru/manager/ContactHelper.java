@@ -12,6 +12,9 @@ public class ContactHelper extends BaseHelper {
     public void submitAddContact() {
         click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]"));
     }
+    public void gotoAddContact() {
+        click(By.linkText("add new"));
+    }
 
     public void addGroup() {
         click(By.name("new_group"));
