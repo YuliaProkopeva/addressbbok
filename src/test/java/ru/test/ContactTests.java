@@ -8,7 +8,7 @@ public class ContactTests extends TestBase {
   @Test
   public void testContact()  {
     ContactData contactData = new ContactData("test@test.test", "testtest", "test4", "test3", "test8");
-    app.getNavigationHelper().gotoAddContact();
+    app.getContactHelper().gotoAddContact();
     app.getContactHelper().fillEmail(contactData);
     app.getContactHelper().fillContactName(new ContactUser("test", "test2", "test1"));
     app.getContactHelper().fillTitle(contactData);
