@@ -11,8 +11,8 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void deleteGroup() {
-        click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='test1'])[3]/input[1]"));
-        click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='test4'])[1]/following::input[2]"));
+        click(By.name("selected[]"));
+        click(By.name("delete"));
     }
 
     public void updateGroup() {
@@ -20,7 +20,7 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void changeGroup(GroupData groupData) {
-        click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='test1'])[1]/following::input[3]"));
+        click(By.name("selected[]"));
         click(By.name("edit"));
         name(By.name("group_name"), groupData.getName());
     }
