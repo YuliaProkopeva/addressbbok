@@ -8,13 +8,12 @@ public class ContactData {
     private final String fax;
 
 
-  public ContactData(String email, String address, String company, String title, String fax) {
+    public ContactData(String email, String address, String company, String title, String fax) {
         this.email = email;
         this.address = address;
         this.company = company;
         this.title = title;
         this.fax = fax;
-
     }
 
     public String getEmail() {
