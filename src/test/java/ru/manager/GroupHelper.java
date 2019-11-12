@@ -21,7 +21,6 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void changeGroup(GroupData groupData) {
-        isThereAGroup();
         click(By.name("selected[]"));
         click(By.name("edit"));
         name(By.name("group_name"), groupData.getName());
