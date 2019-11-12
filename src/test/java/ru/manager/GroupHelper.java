@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.model.GroupData;
 
+
 public class GroupHelper extends BaseHelper {
 
     public GroupHelper(WebDriver driver) {
@@ -11,7 +12,6 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void deleteGroup() {
-        isThereAGroup();
         click(By.name("selected[]"));
         click(By.name("delete"));
     }
@@ -25,6 +25,8 @@ public class GroupHelper extends BaseHelper {
         click(By.name("selected[]"));
         click(By.name("edit"));
         name(By.name("group_name"), groupData.getName());
+        name(By.name("group_header"), groupData.getHeader());
+        name(By.name("group_footer"), groupData.getFooter());
     }
 
     public void submitGroupCreation() {
@@ -49,14 +51,14 @@ public class GroupHelper extends BaseHelper {
         initGroupCreation();
         fillGroupForm(group);
         submitGroupCreation();
-        returnToGroupPage();
     }
 
     public void isThereAGroup() {
         NavigationHelper navigationHelper = new NavigationHelper(driver);
         navigationHelper.gotoGroupPage();
         if (!isElementPresent(By.name("selected[]"))) {
-            createGroup(new GroupData("test1", null, null));
+            createGroup(new GroupData("test1", "test2", "test3"));
         }
     }
+
 }

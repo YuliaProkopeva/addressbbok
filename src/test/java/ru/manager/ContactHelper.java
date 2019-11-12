@@ -2,6 +2,7 @@ package ru.manager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 import ru.model.*;
 
 public class ContactHelper extends BaseHelper {
@@ -18,10 +19,6 @@ public class ContactHelper extends BaseHelper {
         click(By.linkText("add new"));
     }
 
-    public void addGroup() {
-        click(By.name("new_group"));
-        selectFromListOfValue("test1", By.name("new_group"));
-    }
 
     public void fillBirthday() {
         click(By.name("bday"));
@@ -64,21 +61,17 @@ public class ContactHelper extends BaseHelper {
         name(By.name("nickname"), contactUser.getNickName());
     }
 
-    public void downloadCard() {
-        isThereAContact();
-        click(By.xpath("((//tr[@name=\"entry\"]//input[@type=\"checkbox\"])[last()])/following::img[3]"));
+    public void returnToContactPage() {
+        click(By.linkText("home page"));
     }
 
     public void deleteContact() {
-        isThereAContact();
         click(By.xpath("(//tr[@name=\"entry\"]//input[@type=\"checkbox\"])[last()]"));
         click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::input[2]"));
         accept();
     }
 
     public void createContact() {
-        GroupHelper groupHelper = new GroupHelper(driver);
-        groupHelper.isThereAGroup();
         gotoAddContact();
         fillContactName(new ContactUser("test", "test2", "test1"));
         ContactData contactData = new ContactData("test@test.test", null, "test4", "test3", "test8");
@@ -89,7 +82,6 @@ public class ContactHelper extends BaseHelper {
         fillPhone(new ContactPhones("test7", "test6", "test5"));
         fillFax(contactData);
         fillBirthday();
-        addGroup();
         submitAddContact();
     }
 

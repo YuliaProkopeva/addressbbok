@@ -7,7 +7,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
 
-
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
@@ -35,7 +34,7 @@ public class ApplicationManager {
             driver = new ChromeDriver();
         }
 
-        driver.get("http://localhost/addressbook/group.php");
+        driver.get("http://localhost/addressbook");
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         navigationHelper = new NavigationHelper(driver);
         groupHelper = new GroupHelper(driver);
@@ -45,12 +44,14 @@ public class ApplicationManager {
         sessionHelper.login("admin", "secret");
     }
 
-       public void stop() {
+    public void stop() {
         driver.quit();
     }
+
     public ContactHelper getContactHelper() {
         return contactHelper;
     }
+
     public GroupHelper getGroupHelper() {
         return groupHelper;
     }
