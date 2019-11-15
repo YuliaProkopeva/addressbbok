@@ -1,9 +1,13 @@
 package ru.manager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.WebElement;
 import ru.model.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends BaseHelper {
 
@@ -58,40 +62,58 @@ public class ContactHelper extends BaseHelper {
     public void fillContactName(ContactUser contactUser) {
         name(By.name("firstname"), contactUser.getFirstName());
         name(By.name("middlename"), contactUser.getMiddleName());
-        name(By.name("nickname"), contactUser.getNickName());
+        name(By.name("lastname"), contactUser.getLastName());
     }
 
     public void returnToContactPage() {
         click(By.linkText("home page"));
     }
 
+    public void selectContact(int index) {
+        driver.findElements(By.name("selected[]")).get(index).click();
+    }
+
     public void deleteContact() {
-        click(By.xpath("(//tr[@name=\"entry\"]//input[@type=\"checkbox\"])[last()]"));
         click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::input[2]"));
         accept();
     }
 
-    public void createContact() {
-        gotoAddContact();
-        fillContactName(new ContactUser("test", "test2", "test1"));
-        ContactData contactData = new ContactData("test@test.test", null, "test4", "test3", "test8");
-        fillEmail(contactData);
+    public void fillContactForm() {
+        ContactData contactData = new ContactData("test@test.test", "test5", "test4", "test3", "test8");
         fillTitle(contactData);
         fillCompany(contactData);
         fillAddress(contactData);
         fillPhone(new ContactPhones("test7", "test6", "test5"));
         fillFax(contactData);
+        fillEmail(contactData);
         fillBirthday();
-        submitAddContact();
     }
 
     public void isThereAContact() {
         NavigationHelper navigationHelper = new NavigationHelper(driver);
         navigationHelper.goToHomePage();
         if (!isElementPresent(By.xpath("(//input[@name=\"selected[]\"])[last()]"))) {
-            createContact();
+            gotoAddContact();
+            fillContactName( new ContactUser ( "test3", "test7", "test8"));
+            fillContactForm();
+            submitAddContact();
         }
 
+    }
+
+    public List<ContactUser> getContactList() {
+        List<ContactUser> contacts = new ArrayList<>();
+        List<WebElement> elements = driver.findElements(By.xpath("(.//tr[@name=\"entry\"])"));
+        if(elements.size() != 0) {
+            for (WebElement element : elements) {
+                int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+                String lastname = element.findElement(By.xpath("(.//td[2])")).getText();
+                String firstname = element.findElement(By.xpath("(.//td[3])")).getText();
+                ContactUser users = new ContactUser(id, lastname, null, firstname);
+                contacts.add(users);
+            }
+        }
+        return contacts;
     }
 
 }
