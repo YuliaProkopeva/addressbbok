@@ -1,6 +1,6 @@
 .idea/
 target/
-42342.iml
+*.iml
 chromedriver.exe
 IEDriverServer.exe
 
