@@ -8,7 +8,7 @@ import ru.manager.ApplicationManager;
 public class TestBase {
 
 
-    protected final ApplicationManager app = new ApplicationManager(BrowserType.FIREFOX);
+    protected final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
 
     @BeforeClass
     public void setUp() {

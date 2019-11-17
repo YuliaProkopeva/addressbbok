@@ -1,11 +1,9 @@
 package ru.test;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.model.*;
-import sun.font.DelegatingShape;
 
 import java.util.Comparator;
 import java.util.List;
@@ -35,6 +33,11 @@ public class ChangeContactTests extends TestBase {
         Comparator<? super ContactUser> byId = Comparator.comparingInt(ContactUser::getId);
         before.sort(byId);
         after.sort(byId);
+        if (!before.get(before.size() - 1).getFirstName().equals(user.getFirstName())) {
+            Assert.assertNotEquals(before.get(before.size() - 1), after.get(after.size() - 1));
+            before.remove(before.size() - 1);
+            after.remove(after.size() - 1);
+        }
         Assert.assertEquals(before, after);
     }
 }

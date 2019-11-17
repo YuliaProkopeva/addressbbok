@@ -28,6 +28,11 @@ public class ChangeGroupTests extends TestBase {
         Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
         before.sort(byId);
         after.sort(byId);
-        Assert.assertNotEquals(before, after);
+        if (!before.get(before.size() - 1).getName().equals(group.getName())) {
+            Assert.assertNotEquals(before.get(before.size() - 1), after.get(after.size() - 1));
+            before.remove(before.size() - 1);
+            after.remove(after.size() - 1);
+        }
+        Assert.assertEquals(before, after);
     }
 }
