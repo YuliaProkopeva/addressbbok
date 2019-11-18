@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.model.ContactUser;
+
 import java.util.List;
 
 public class DeleteContactTests extends TestBase {

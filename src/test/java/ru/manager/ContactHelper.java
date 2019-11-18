@@ -94,7 +94,7 @@ public class ContactHelper extends BaseHelper {
         navigationHelper.goToHomePage();
         if (!isElementPresent(By.xpath("(//input[@name=\"selected[]\"])[last()]"))) {
             gotoAddContact();
-            fillContactName( new ContactUser ( "test3", "test7", "test8"));
+            fillContactName(new ContactUser("test3", "test7", "test8"));
             fillContactForm();
             submitAddContact();
         }
@@ -104,7 +104,7 @@ public class ContactHelper extends BaseHelper {
     public List<ContactUser> getContactList() {
         List<ContactUser> contacts = new ArrayList<>();
         List<WebElement> elements = driver.findElements(By.xpath("(.//tr[@name=\"entry\"])"));
-        if(elements.size() != 0) {
+        if (elements.size() != 0) {
             for (WebElement element : elements) {
                 int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
                 String lastname = element.findElement(By.xpath("(.//td[2])")).getText();

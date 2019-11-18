@@ -3,6 +3,7 @@ package ru.test;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.model.ContactUser;
+
 import java.util.Comparator;
 import java.util.List;
 

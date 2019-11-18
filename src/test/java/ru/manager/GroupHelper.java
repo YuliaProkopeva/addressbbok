@@ -56,9 +56,9 @@ public class GroupHelper extends BaseHelper {
     }
 
     public List<GroupData> getGroupList() {
-        List<GroupData>  groups = new ArrayList<>();
+        List<GroupData> groups = new ArrayList<>();
         List<WebElement> elements = driver.findElements(By.cssSelector("span.group"));
-        if(elements.size() != 0) {
+        if (elements.size() != 0) {
             for (WebElement element : elements) {
                 String name = element.getText();
                 int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
@@ -66,7 +66,7 @@ public class GroupHelper extends BaseHelper {
                 groups.add(group);
             }
         }
-        return  groups;
+        return groups;
     }
 
 }
