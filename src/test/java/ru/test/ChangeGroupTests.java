@@ -1,39 +1,32 @@
 package ru.test;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.model.GroupData;
+import ru.model.Groups;
 
-import java.util.Comparator;
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ChangeGroupTests extends TestBase {
 
-    @BeforeClass
-    public void setUp() {
-        app.init();
-        app.getGroupHelper().isThereAGroup();
+    @BeforeMethod
+    public void ensurePreconditions() {
+        app.goTo().groupPage();
+        if (app.group().all().size() == 0) {
+            app.group().create(new GroupData().withName("test2"));
+        }
     }
 
     @Test
     public void changeGroup() {
-        app.getNavigationHelper().gotoGroupPage();
-        List<GroupData> before = app.getGroupHelper().getGroupList();
-        app.getGroupHelper().selectGroup(before.size() - 1);
-        GroupData group = new GroupData(before.get(before.size() - 1).getId(), "test1", "test8", "test9");
-        app.getChangesHelper().changeGroup(group);
-        app.getChangesHelper().updateGroup();
-        app.getGroupHelper().returnToGroupPage();
-        List<GroupData> after = app.getGroupHelper().getGroupList();
-        Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
-        before.sort(byId);
-        after.sort(byId);
-        if (!before.get(before.size() - 1).getName().equals(group.getName())) {
-            Assert.assertNotEquals(before.get(before.size() - 1), after.get(after.size() - 1));
-            before.remove(before.size() - 1);
-            after.remove(after.size() - 1);
-        }
-        Assert.assertEquals(before, after);
+        app.goTo().groupPage();
+        Groups before = app.group().all();
+        GroupData modifiedGroup = before.iterator().next();
+        GroupData group = new GroupData().withId(modifiedGroup.getId()).withName("test1").withHeader("test8").withFooter("test9");
+        app.group().modify(group);
+        assertThat(app.group().count(), equalTo(before.size()));
+        Groups after = app.group().all();
+        assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
     }
 }

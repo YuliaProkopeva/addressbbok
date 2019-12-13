@@ -13,7 +13,6 @@ public class ApplicationManager {
 
     WebDriver driver;
 
-    private ChangesHelper changesHelper;
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
     private SessionHelper sessionHelper;
@@ -39,7 +38,6 @@ public class ApplicationManager {
         navigationHelper = new NavigationHelper(driver);
         groupHelper = new GroupHelper(driver);
         contactHelper = new ContactHelper(driver);
-        changesHelper = new ChangesHelper(driver);
         sessionHelper = new SessionHelper(driver);
         sessionHelper.login("admin", "secret");
     }
@@ -48,19 +46,16 @@ public class ApplicationManager {
         driver.quit();
     }
 
-    public ContactHelper getContactHelper() {
+    public ContactHelper contact() {
         return contactHelper;
     }
 
-    public GroupHelper getGroupHelper() {
+    public GroupHelper group() {
         return groupHelper;
     }
 
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
 
-    public ChangesHelper getChangesHelper() {
-        return changesHelper;
-    }
 }
